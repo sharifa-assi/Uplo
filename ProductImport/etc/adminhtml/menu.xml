@@ -8,6 +8,7 @@
              sortOrder="10"
              parent="Magento_Backend::content"
              resource="Uplo_ProductImport::content_elements"/>
+
         <add id="Uplo_ProductImport::record"
              title="Manage CSV"
              translate="title"
@@ -16,16 +17,22 @@
              parent="Uplo_ProductImport::content_elements"
              action="uplo_productimport/record"
              resource="Uplo_ProductImport::record"/>
+
         <add id="Uplo_ProductImport::category"
              title="Categories"
+             translate="title"
              module="Uplo_ProductImport"
-             sortOrder="20"
+             sortOrder="10"
+             parent="Uplo_ProductImport::record"
              action="uplo_productimport/category/index"
              resource="Uplo_ProductImport::category"/>
+
         <add id="Uplo_ProductImport::product"
              title="Products"
+             translate="title"
              module="Uplo_ProductImport"
              sortOrder="20"
+             parent="Uplo_ProductImport::record"
              action="uplo_productimport/product/index"
              resource="Uplo_ProductImport::product"/>
     </menu>
