@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Uplo_ProductImport::content_elements"
+             title="UPLO Assessment"
+             translate="title"
+             module="Uplo_ProductImport"
+             sortOrder="10"
+             parent="Magento_Backend::content"
+             resource="Uplo_ProductImport::content_elements"/>
+        <add id="Uplo_ProductImport::record"
+             title="Manage CSV"
+             translate="title"
+             module="Uplo_ProductImport"
+             sortOrder="0"
+             parent="Uplo_ProductImport::content_elements"
+             action="uplo_productimport/record"
+             resource="Uplo_ProductImport::record"/>
+        <add id="Uplo_ProductImport::category"
+             title="Categories"
+             module="Uplo_ProductImport"
+             sortOrder="20"
+             action="uplo_productimport/category/index"
+             resource="Uplo_ProductImport::category"/>
+        <add id="Uplo_ProductImport::product"
+             title="Products"
+             module="Uplo_ProductImport"
+             sortOrder="20"
+             action="uplo_productimport/product/index"
+             resource="Uplo_ProductImport::product"/>
+    </menu>
+</config>

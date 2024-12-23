@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="uplo_productimport_category_listing_data_source" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Category\Grid\Collection</item>
+                 <item name="uplo_productimport_product_listing_data_source" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Product\Grid\Collection</item>
+                <item name="uplo_productimport_record_listing_data_source" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Record\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Uplo\ProductImport\Model\ResourceModel\Category\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">uplo_productimport_category</argument>
+            <argument name="eventPrefix" xsi:type="string">uplo_productimport_category_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">category_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Category</argument>
+        </arguments>
+    </type>
+
+    <type name="Uplo\ProductImport\Model\ResourceModel\Product\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">uplo_productimport_product</argument>
+            <argument name="eventPrefix" xsi:type="string">uplo_productimport_product_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">product_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Product</argument>
+        </arguments>
+    </type>
+
+    <type name="Uplo\ProductImport\Model\ResourceModel\Record\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">uplo_productimport_record</argument>
+            <argument name="eventPrefix" xsi:type="string">uplo_productimport_record_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">record_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Record</argument>
+        </arguments>
+    </type>
+</config>

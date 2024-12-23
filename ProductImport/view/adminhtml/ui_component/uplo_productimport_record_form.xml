@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">uplo_productimport_record_form.uplo_productimport_record_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Uplo\ProductImport\Block\Adminhtml\Record\Edit\SaveButton" />
+            <button name="back" class="Uplo\ProductImport\Block\Adminhtml\Record\Edit\BackButton" />
+        </buttons>
+        <namespace>uplo_productimport_record_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>uplo_productimport_record_form.uplo_productimport_record_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="uplo_productimport_record_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="uplo_productimport/record/save" />
+        </settings>
+        <dataProvider class="Uplo\ProductImport\Model\Record\DataProvider" name="uplo_productimport_record_form_data_source">
+            <settings>
+                <requestFieldName>record_id</requestFieldName>
+                <primaryFieldName>record_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+        <field name="record_id" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">record</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>record_id</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="content">
+        <settings>
+            <label translate="true">CSV Upload</label>
+        </settings>
+
+        <field name="products_csv_file" formElement="fileUploader">
+            <settings>
+                <label translate="true">Products CSV File</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="*/*/fileTempUpload" />
+                        </uploaderConfig>
+                        <allowedExtensions>csv</allowedExtensions>
+                        <maxFileSize>5242880</maxFileSize>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+
+        <field name="categories_csv_file" formElement="fileUploader">
+            <settings>
+                <label translate="true">Categories CSV File</label>
+                <visible>true</visible>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <fileUploader>
+                    <settings>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="*/*/fileTempUpload" />
+                        </uploaderConfig>
+                        <allowedExtensions>csv</allowedExtensions>
+                        <maxFileSize>5242880</maxFileSize>
+                    </settings>
+                </fileUploader>
+            </formElements>
+        </field>
+    </fieldset>
+</form>
