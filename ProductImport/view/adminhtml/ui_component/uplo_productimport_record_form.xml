@@ -70,7 +70,7 @@
                             <param xsi:type="url" name="url" path="*/*/fileTempUpload" />
                         </uploaderConfig>
                         <allowedExtensions>csv</allowedExtensions>
-                        <maxFileSize>52428800</maxFileSize>
+                        <maxFileSize>5242880</maxFileSize>
                     </settings>
                 </fileUploader>
             </formElements>
@@ -91,7 +91,7 @@
                             <param xsi:type="url" name="url" path="*/*/fileTempUpload" />
                         </uploaderConfig>
                         <allowedExtensions>csv</allowedExtensions>
-                        <maxFileSize>52428800</maxFileSize>
+                        <maxFileSize>5242880</maxFileSize>
                     </settings>
                 </fileUploader>
             </formElements>
