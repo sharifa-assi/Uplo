@@ -52,10 +52,10 @@ class CategoryDataProvider extends ModifierPoolDataProvider
         }
 
         $categoryData = [];
-        $categories = $this->collection->getItems();  // Get all categories
+        $categories = $this->collection->getItems(); 
 
         foreach ($categories as $category) {
-            $categoryData[] = $category->getData();  // Add category data to the array
+            $categoryData[] = $category->getData(); 
         }
 
         $this->loadedData = $categoryData;

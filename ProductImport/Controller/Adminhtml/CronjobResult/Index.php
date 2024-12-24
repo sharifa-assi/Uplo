@@ -20,8 +20,8 @@ class Index extends Action implements HttpGetActionInterface
     {
         /** @var Page $resultPage */
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $resultPage->setActiveMenu('Uplo_ProductImport::cronjobresult');  // Use appropriate ACL
-        $resultPage->getConfig()->getTitle()->prepend(__('Manage Cronjob Results'));  // Page title
+        $resultPage->setActiveMenu('Uplo_ProductImport::cronjobresult');
+        $resultPage->getConfig()->getTitle()->prepend(__('Manage Cronjob Results')); 
 
         return $resultPage;
     }

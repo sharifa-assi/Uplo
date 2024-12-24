@@ -20,8 +20,8 @@ class Index extends Action implements HttpGetActionInterface
     {
         /** @var Page $resultPage */
         $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $resultPage->setActiveMenu('Uplo_ProductImport::product');  // Use appropriate ACL
-        $resultPage->getConfig()->getTitle()->prepend(__('Manage Products'));  // Page title
+        $resultPage->setActiveMenu('Uplo_ProductImport::product');
+        $resultPage->getConfig()->getTitle()->prepend(__('Manage Products'));  
 
         return $resultPage;
     }
