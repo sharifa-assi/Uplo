@@ -40,7 +40,7 @@ class Save extends Action implements HttpPostActionInterface
             }
 
             try {
-                $this->messageManager->addSuccessMessage(__('Files are successfully uploaded.'));
+                $this->messageManager->addSuccessMessage(__('Files have been successfully uploaded and processed.'));
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $exception) {
                 $this->messageManager->addExceptionMessage($exception);
