@@ -75,14 +75,20 @@ class FileTempUpload extends Action implements HttpPostActionInterface
                     $productData = array_combine($header, $row);
                     $isValid = true;
                     $rowFailures = [];
-
+                    
                     if (empty($productData['sku']) || !ctype_alnum($productData['sku'])) {
                         $isValid = false;
-                        $rowFailures[] = 'Invalid SKU format.';
+                        $rowFailures[] = 'Invalid SKU.';
                     }
-                    if (empty($productData['url']) || !filter_var($productData['url'], FILTER_VALIDATE_URL)) {
+
+                    if (empty($productData['name'])) {
                         $isValid = false;
-                        $rowFailures[] = 'Invalid URL format.';
+                        $rowFailures[] = 'Name is required.';
+                    }
+
+                    if (empty($productData['url_key']) || !filter_var($productData['url_key'], FILTER_VALIDATE_URL)) {
+                        $isValid = false;
+                        $rowFailures[] = 'Invalid URL.';
                     }
 
                     if ($isValid) {
@@ -135,7 +141,7 @@ class FileTempUpload extends Action implements HttpPostActionInterface
 
                     if (empty($categoryData['url_key']) || !filter_var($categoryData['url_key'], FILTER_VALIDATE_URL)) {
                         $isValid = false;
-                        $rowFailures[] = 'Invalid URL format.';
+                        $rowFailures[] = 'Invalid URL.';
                     }
 
                     if ($isValid) {
