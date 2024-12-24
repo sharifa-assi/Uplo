@@ -61,8 +61,9 @@ class ProcessCsv
                 $category = $this->categoryFactory->create()
                     ->loadByAttribute('name', $categoryData->getCategoryName());
     
-                if ($category) {
+                if ($category->getId()) {
                     $category->setData('url_key', $categoryData->getUrlKey());
+                    $category->setName($categoryData->getCategoryName()); 
                 } else {
                     $category = $this->categoryFactory->create();
                     $category->setName($categoryData->getCategoryName())
@@ -94,7 +95,7 @@ class ProcessCsv
                 $product = $this->productFactory->create()
                     ->loadByAttribute('sku', $productData->getSku());
     
-                if ($product) {
+                if ($product && $product->getId()) {
                     $product->setName($productData->getName())
                         ->setTitle($productData->getTitle())
                         ->setShortDescription($productData->getShortDescription())
@@ -127,19 +128,21 @@ class ProcessCsv
     {
         try {
             $connection = $this->resource->getConnection();
-        
+            
             $entityName = null;
             $identifier = null; 
-        
+            
             if ($type === 'category') {
-                $category = $this->categoryFactory->create()->load($entityId);
-                if ($category) {
-                    $entityName = $category->getName();
+                $categoryCollection = $this->categoryCollectionFactory->create();
+                $category = $categoryCollection->addFieldToFilter('category_id', $entityId)->getFirstItem();
+                if ($category->getId()) {
+                    $entityName = $category->getCategoryName();
                     $identifier = $entityName; 
                 }
             } elseif ($type === 'product') {
-                $product = $this->productFactory->create()->load($entityId);
-                if ($product) {
+                $productCollection = $this->productCollectionFactory->create();
+                $product = $productCollection->addFieldToFilter('product_id', $entityId)->getFirstItem();
+                if ($product->getId()) {
                     $entityName = $product->getName();
                     $identifier = $product->getSku();
                 }
