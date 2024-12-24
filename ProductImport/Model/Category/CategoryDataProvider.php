@@ -7,6 +7,7 @@ namespace Uplo\ProductImport\Model\Category;
 use Uplo\ProductImport\Model\ResourceModel\Category\CollectionFactory;
 use Uplo\ProductImport\Model\ResourceModel\Category;
 use Uplo\ProductImport\Model\CategoryFactory;
+use Uplo\ProductImport\Model\ResourceModel\Category as CategoryResource;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Filesystem;
 use Magento\Store\Model\StoreManagerInterface;
