@@ -53,25 +53,31 @@
         </index>
     </table>
 
-    <table name="uplo_productimport_product_category" resource="default" engine="innodb">
-        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"/>
-        <column xsi:type="int" name="product_id" unsigned="true" nullable="false"/>
-        <column xsi:type="int" name="category_id" unsigned="true" nullable="false"/>
+    <table name="uplo_productimport_cronjobresult" resource="default" engine="innodb">
+        <column xsi:type="int" name="log_id" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar" name="type" nullable="false" length="50"/>
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false"/>
+        <column xsi:type="varchar" name="entity_name" nullable="true" length="255"/> 
+        <column xsi:type="varchar" name="status" nullable="false" length="50"/>
+        <column xsi:type="text" name="message" nullable="true"/>
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="true"/>
 
         <constraint xsi:type="primary" referenceId="PRIMARY">
-            <column name="entity_id"/>
+            <column name="log_id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="FK_PRODUCT_CATEGORY_PRODUCT_ID" table="uplo_productimport_product" column="product_id" 
-                   referenceTable="uplo_productimport_product" referenceColumn="product_id" onDelete="CASCADE"/>
-        <constraint xsi:type="foreign" referenceId="FK_PRODUCT_CATEGORY_CATEGORY_ID" table="uplo_productimport_category" column="category_id" 
-                   referenceTable="uplo_productimport_category" referenceColumn="category_id" onDelete="CASCADE"/>
 
-        <index referenceId="PRODUCT_CATEGORY_PRODUCT_ID_IDX" indexType="btree">
-            <column name="product_id"/>
+        <index referenceId="LOG_TYPE_IDX" indexType="btree">
+            <column name="type"/>
         </index>
-        <index referenceId="PRODUCT_CATEGORY_CATEGORY_ID_IDX" indexType="btree">
-            <column name="category_id"/>
+
+        <index referenceId="LOG_ENTITY_ID_IDX" indexType="btree">
+            <column name="entity_id"/>
+        </index>
+
+        <index referenceId="LOG_STATUS_IDX" indexType="btree">
+            <column name="status"/>
         </index>
     </table>
+
 </schema>

@@ -4,7 +4,8 @@
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="uplo_productimport_category_listing_data_source" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Category\Grid\Collection</item>
-                 <item name="uplo_productimport_product_listing_data_source" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Product\Grid\Collection</item>
+                <item name="uplo_productimport_cronjobresult_listing_data_source" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\CronjobResult\Grid\Collection</item>
+                <item name="uplo_productimport_product_listing_data_source" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Product\Grid\Collection</item>
                 <item name="uplo_productimport_record_listing_data_source" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Record\Grid\Collection</item>
             </argument>
         </arguments>
@@ -16,6 +17,15 @@
             <argument name="eventPrefix" xsi:type="string">uplo_productimport_category_grid_collection</argument>
             <argument name="eventObject" xsi:type="string">category_grid_collection</argument>
             <argument name="resourceModel" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\Category</argument>
+        </arguments>
+    </type>
+
+    <type name="Uplo\ProductImport\Model\ResourceModel\CronjobResult\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">uplo_productimport_cronjobresult</argument>
+            <argument name="eventPrefix" xsi:type="string">uplo_productimport_cronjobresult_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">cronjobresult_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Uplo\ProductImport\Model\ResourceModel\CronjobResult</argument>
         </arguments>
     </type>
 

@@ -35,5 +35,14 @@
              parent="Uplo_ProductImport::record"
              action="uplo_productimport/product/index"
              resource="Uplo_ProductImport::product"/>
+             
+        <add id="Uplo_ProductImport::cronjobresult"
+             title="Cronjob Result"
+             translate="title"
+             module="Uplo_ProductImport"
+             sortOrder="20"
+             parent="Uplo_ProductImport::record"
+             action="uplo_productimport/cronjobresult/index"
+             resource="Uplo_ProductImport::cronjobresult"/>
     </menu>
 </config>
