@@ -12,7 +12,7 @@ In the Magento sidebar, the "Uplo Assessment" section has been added to manage p
 ### 1. **Manage CSV**
 ![Screenshot 2024-12-24 071616](https://github.com/user-attachments/assets/1ae3d969-5a30-40c5-a6cd-8c5df6a4b42e)
 
-This section features a grid view for the records in the database that are awaiting CSV validation after being uploaded. 
+This section features a grid view for the records in the database that had undergone CSV validation after being uploaded. 
 
 - **Product CSV validation** will fail if:
   - The SKU format is incorrect.
@@ -38,7 +38,7 @@ This section displays a grid view of successfully validated product and category
 ### 3. **Cronjob Results**
 ![Screenshot 2024-12-24 072709](https://github.com/user-attachments/assets/06ffc81a-66a0-403f-a10e-1491012f0a8a)
 
-This section displays the results of the cronjob process, which runs every 5 minutes. The cronjob handles tasks related to importing and updating records in the system.
+This section displays the results of the cronjob process, which runs every 5 minutes.
 
 ---
 
