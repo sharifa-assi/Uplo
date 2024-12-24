@@ -37,7 +37,7 @@
              resource="Uplo_ProductImport::product"/>
              
         <add id="Uplo_ProductImport::cronjobresult"
-             title="Cronjob Result"
+             title="Cronjob Results"
              translate="title"
              module="Uplo_ProductImport"
              sortOrder="20"
