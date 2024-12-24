@@ -175,40 +175,74 @@ class FileTempUpload extends Action implements HttpPostActionInterface
     {
         $connection = $this->resourceConnection->getConnection();
         $productTable = $this->resourceConnection->getTableName('uplo_productimport_product');
-
+    
         foreach ($products as $product) {
             try {
-                $connection->insert($productTable, [
-                    'sku' => $product['sku'] ?? '',
-                    'name' => $product['name'] ?? '',
-                    'title' => $product['title'] ?? '',
-                    'short_description' => $product['short_description'] ?? '',
-                    'long_description' => $product['long_description'] ?? '',
-                    'url_key' => $product['url_key'] ?? '',
-                    'creation_time' => date('Y-m-d H:i:s'),
-                ]);
+                $existingProduct = $connection->fetchOne(
+                    "SELECT sku FROM $productTable WHERE sku = :sku",
+                    ['sku' => $product['sku']]
+                );
+    
+                if ($existingProduct) {
+                    $connection->update(
+                        $productTable,
+                        [
+                            'name' => $product['name'] ?? '',
+                            'title' => $product['title'] ?? '',
+                            'short_description' => $product['short_description'] ?? '',
+                            'long_description' => $product['long_description'] ?? '',
+                            'url_key' => $product['url_key'] ?? '',
+                        ],
+                        ['sku = ?' => $product['sku']]
+                    );
+                } else {
+                    $connection->insert($productTable, [
+                        'sku' => $product['sku'] ?? '',
+                        'name' => $product['name'] ?? '',
+                        'title' => $product['title'] ?? '',
+                        'short_description' => $product['short_description'] ?? '',
+                        'long_description' => $product['long_description'] ?? '',
+                        'url_key' => $product['url_key'] ?? '',
+                        'creation_time' => date('Y-m-d H:i:s'),
+                    ]);
+                }
             } catch (\Exception $e) {
                 $this->_logger->error('Error saving product: ' . json_encode($product) . '. Error: ' . $e->getMessage());
                 $this->messageManager->addErrorMessage(__('Failed to save product: %1', $product['sku']));
             }
         }
-    }
+    }    
 
     private function saveCategories(array $categories): void
     {
         $connection = $this->resourceConnection->getConnection();
         $categoryTable = $this->resourceConnection->getTableName('uplo_productimport_category');
-
+    
         foreach ($categories as $category) {
             try {
-                $connection->insert($categoryTable, [
-                    'category_name' => $category['category_name'] ?? '',
-                    'url_key' => $category['url_key'] ?? '',
-                    'creation_time' => date('Y-m-d H:i:s'),
-                ]);
+                $existingCategory = $connection->fetchOne(
+                    "SELECT category_name FROM $categoryTable WHERE category_name = :category_name",
+                    ['category_name' => $category['category_name']]
+                );
+    
+                if ($existingCategory) {
+                    $connection->update(
+                        $categoryTable,
+                        [
+                            'url_key' => $category['url_key'] ?? '',
+                        ],
+                        ['category_name = ?' => $category['category_name']]
+                    );
+                } else {
+                    $connection->insert($categoryTable, [
+                        'category_name' => $category['category_name'] ?? '',
+                        'url_key' => $category['url_key'] ?? '',
+                        'creation_time' => date('Y-m-d H:i:s'),
+                    ]);
+                }
             } catch (\Exception $e) {
                 $this->messageManager->addErrorMessage(__('Failed to save category: %1', $category['category_name']));
             }
         }
-    }
+    }    
 }

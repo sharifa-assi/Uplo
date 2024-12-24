@@ -127,30 +127,34 @@ class ProcessCsv
     {
         try {
             $connection = $this->resource->getConnection();
-    
+        
             $entityName = null;
+            $identifier = null; 
+        
             if ($type === 'category') {
                 $category = $this->categoryFactory->create()->load($entityId);
                 if ($category) {
                     $entityName = $category->getName();
+                    $identifier = $entityName; 
                 }
             } elseif ($type === 'product') {
                 $product = $this->productFactory->create()->load($entityId);
                 if ($product) {
                     $entityName = $product->getName();
+                    $identifier = $product->getSku();
                 }
             }
     
             $select = $connection->select()
                 ->from('uplo_productimport_cronjobresult')
                 ->where('type = ?', $type)
-                ->where('entity_id = ?', $entityId)
+                ->where('entity_name = ?', $identifier)
                 ->where('created_at > ?', (new \DateTime())->modify('-5 minutes')->format('Y-m-d H:i:s'));
     
             $existingLog = $connection->fetchRow($select);
     
             if ($existingLog) {
-                $this->logger->info("Skipping log entry for {$type} with ID {$entityId}, already processed in the last 5 minutes.");
+                $this->logger->info("Skipping log entry for {$type} with identifier {$identifier}, already processed in the last 5 minutes.");
                 return;
             }
     
@@ -166,4 +170,5 @@ class ProcessCsv
             $this->logger->error('Error logging operation: ' . $e->getMessage());
         }
     }
+    
 }
