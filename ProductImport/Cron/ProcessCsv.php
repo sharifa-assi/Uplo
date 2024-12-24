@@ -124,7 +124,7 @@ class ProcessCsv
         }
     }
 
-    protected function logOperation($type, $entityId, $status, $message = null)
+    protected function logOperation($type, $entityId, $status)
     {
         try {
             $connection = $this->resource->getConnection();
@@ -166,7 +166,6 @@ class ProcessCsv
                 'entity_id' => $entityId,
                 'entity_name' => $entityName,
                 'status' => $status,
-                'message' => $message,
                 'created_at' => (new \DateTime())->format('Y-m-d H:i:s')
             ]);
         } catch (\Exception $e) {
